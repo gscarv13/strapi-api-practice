@@ -1,2 +1,1 @@
-node_modules/
-pg-data/
+.pg-data/
