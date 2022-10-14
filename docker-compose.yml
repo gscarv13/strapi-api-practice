@@ -18,16 +18,13 @@ services:
       APP_KEYS: ${APP_KEYS}
       NODE_ENV: ${NODE_ENV}
     volumes:
-      - ./config:/opt/app/config
-      - ./src:/opt/app/src
-      - ./package.json:/opt/package.json
-      - ./yarn.lock:/opt/yarn.lock
-      - ./.env:/opt/app/.env
-      - ./public/uploads:/opt/app/public/uploads
+      - .:/opt/app
     ports:
       - '1337:1337'
+      - '8000:8000' # for strapi admin auto rebuild
     networks:
       - strapi
+    command: 'yarn develop --watch-admin'
     depends_on:
       - strapiDB
 
@@ -42,7 +39,7 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${DATABASE_NAME}
     volumes:
-      - ./pg-data/:/var/lib/postgresql/data/
+      - ./.pg-data/:/var/lib/postgresql/data/
 
     ports:
       - '5432:5432'

@@ -1,3 +1,6 @@
+import logoDark from './extensions/images/logo-dark.svg'
+import favicon from './extensions/images/favicon.png'
+
 export default {
   config: {
     locales: [
@@ -28,8 +31,20 @@ export default {
       // 'zh-Hans',
       // 'zh',
     ],
+    auth: {
+      logo: logoDark,
+    },
+    menu: {
+       logo: favicon,
+    },
+    // Replace the favicon
+    head: {
+      favicon: favicon,
+    },
+    // Disable video tutorials
+    tutorials: false,
   },
-  bootstrap(app) {
+  bootstrap(app) {   
     console.log(app);
   },
 };

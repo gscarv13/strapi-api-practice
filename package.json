@@ -11,9 +11,11 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.4.3",
-    "@strapi/plugin-users-permissions": "4.4.3",
+    "@_sh/strapi-plugin-ckeditor": "^1.1.2",
+    "@strapi/plugin-graphql": "^4.4.3",
     "@strapi/plugin-i18n": "4.4.3",
+    "@strapi/plugin-users-permissions": "4.4.3",
+    "@strapi/strapi": "4.4.3",
     "pg": "8.6.0"
   },
   "author": {

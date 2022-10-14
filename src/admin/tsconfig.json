@@ -2,7 +2,8 @@
   "extends": "@strapi/typescript-utils/tsconfigs/admin",
   "include": [
     "../plugins/**/admin/src/**/*",
-    "./"
+    "./",
+    "customFiles.d.ts"
   ],
   "exclude": [
     "node_modules/",

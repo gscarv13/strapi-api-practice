@@ -118,4 +118,5 @@ build
 # Misc
 ############################
 
-pg-data
+.pg-data/
+dist/
