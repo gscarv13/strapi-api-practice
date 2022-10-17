@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "plublishers",
+  "collectionName": "publishers",
   "info": {
-    "singularName": "plublisher",
-    "pluralName": "plublishers",
-    "displayName": "Plublisher"
+    "singularName": "publisher",
+    "pluralName": "publishers",
+    "displayName": "Publisher"
   },
   "options": {
     "draftAndPublish": true
@@ -25,7 +25,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::game.game",
-      "mappedBy": "plublisher"
+      "mappedBy": "publisher"
     }
   }
 }
