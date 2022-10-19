@@ -5,7 +5,6 @@
 import { GenericService } from '@strapi/strapi/lib/core-api/service';
 import { factories } from '@strapi/strapi';
 
-
 import { JSDOM } from 'jsdom'
 import axios from 'axios'
 import FormData from 'form-data'
@@ -51,10 +50,12 @@ const create = async (name, entityName) => {
   const entry = await getByName(name, entityName);
 
   if (!entry) {
+    console.log(slugify(name, { lower: true }));
+
     return await strapi.entityService.create(entityName, {
       data: {
         name: name,
-        slug: slugify(name, { lower: true }),
+        slug: slugify(name.replace(/[^A-Za-z0-9-_.~]*/gi, ""), { lower: true }),
       },
     });
   }
@@ -162,14 +163,21 @@ const createGames = async (products) => {
 }
 
 
+const stringifyParams = (params) => {
+  const stringified = new URLSearchParams(Object.entries(params)).toString();
+
+  return stringified
+}
+
 export default factories.createCoreService('api::game.game', ({ strapi }) => ({
   populate: async (params) => {
     try {
-      const gogApiUrl = `https://www.gog.com/games/ajax/filtered?mediaType=game&page=1&sort=popularity`
+      const gogApiUrl = `https://www.gog.com/games/ajax/filtered?mediaType=game&${stringifyParams(params)}`
+
       const { data: { products } } = await axios.get(gogApiUrl);
   
-      await createManyToMany([products[7], products[8]])
-      await createGames([products[7], products[8]])
+      await createManyToMany(products)
+      await createGames(products)
       
     } catch (e) {
       console.log("populate service: ", Exception(e));
